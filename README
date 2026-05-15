@@ -1,0 +1,8 @@
+A minimal dhcp server implementation.
+
+  ./tftpee [port] [root]
+
+It listens.
+It servers.
+Forever.
+

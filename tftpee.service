@@ -1,0 +1,10 @@
+[Service]
+Type = simple
+ExecStart = /usr/local/bin/tftpee 69 /srv/tftp
+
+[Install]
+WantedBy = multi-user.target
+
+[Unit]
+After = network.target
+
