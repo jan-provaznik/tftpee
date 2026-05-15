@@ -2,6 +2,35 @@
 Type = simple
 ExecStart = /usr/local/bin/tftpee 69 /srv/tftp
 
+RestrictRealtime = yes
+RestrictNamespaces = yes
+RestrictAddressFamilies = AF_INET AF_INET6
+
+ProtectControlGroups = yes
+ProtectKernelTunables = yes
+ProtectKernelModules = yes
+ProtectKernelLogs = yes
+ProtectSystem = strict
+ProtectKernelLogs = yes
+ProtectHostname = yes
+ProtectClock = yes
+ProtectHome = yes
+
+ProtectProc = invisible
+ProcSubset = pid
+
+PrivateTmp = yes
+PrivateDevices = yes
+
+DynamicUser = yes
+NoNewPrivileges = yes
+
+SystemCallFilter = @system-service 
+SystemCallFilter = ~ @chown @privileged @resources
+
+CapabilityBoundingSet = CAP_NET_BIND_SERVICE
+AmbientCapabilities = CAP_NET_BIND_SERVICE
+
 [Install]
 WantedBy = multi-user.target
 
