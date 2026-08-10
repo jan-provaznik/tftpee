@@ -11,10 +11,14 @@ import "fmt"
 import "github.com/pin/tftp/v3"
 
 func main () {
+	os.Exit(work())
+}
+
+func work () (int) {
 	if 3 != len(os.Args) {
 		fmt.Println("dhcpee [port] [root]")
 		fmt.Println("... serves root over tftp listening on port")
-		os.Exit(1)
+		return 1
 	}
 
 	port := os.Args[1]
@@ -25,7 +29,7 @@ func main () {
 	root, err := os.OpenRoot(path)
 	if err != nil {
 		fmt.Println("Could not open the root path.")
-		os.Exit(1)
+		return 1
 	}
 	defer root.Close()
 
@@ -50,8 +54,10 @@ func main () {
 	err = server.ListenAndServe(fmt.Sprintf(":%s", port))
 	if err != nil {
 		fmt.Println("Could not start the server.")
-		os.Exit(1)
+		return 1
 	}
 
+	//
+	return 0
 }
 
